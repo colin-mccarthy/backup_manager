@@ -2,4 +2,4 @@
 - name: "tmos.restore: load configuration"
   bigip_config:
     server: "{{ ansible_host | default(inventory_hostname) }}"
-    merge_content: "{{ lookup('file', _backup_manager_git_store_path + '/running.cfg') }}"
+    merge_content: "{{ lookup('file', __backup_manager_git_store_path + '/running.cfg') }}"

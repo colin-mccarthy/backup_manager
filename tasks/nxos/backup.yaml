@@ -17,6 +17,6 @@
 - name: "nxos.backup: save configuration to git_store"
   copy:
     src: "{{ r_nxos_config.backup_path }}"
-    dest: "{{ _backup_manager_git_store_path }}/running.cfg"
+    dest: "{{ __backup_manager_git_store_path }}/running.cfg"
     force: "yes"
   notify: git_sync
