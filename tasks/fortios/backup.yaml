@@ -1,7 +1,7 @@
 ---
 - name: "fortios.backup: fetch network configuration"
   fortios_config:
-    host: "{{ ansible_host }}"
+    host: "{{ ansible_host | default(inventory_hostname) }}"
   register: r_fortios_config_backup
 
 - name: "fortios.backup: save configuration to git_store"
