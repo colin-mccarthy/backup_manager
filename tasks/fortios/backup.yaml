@@ -7,6 +7,6 @@
 - name: "fortios.backup: save configuration to git_store"
   copy:
     content: "{{ r_fortios_config_backup.running_config }}"
-    dest: "{{ git_store }}/{{ backup_manager_backup_path }}/running.cfg"
+    dest: "{{ _backup_manager_git_store_path }}/running.cfg"
     force: "yes"
   notify: git_sync

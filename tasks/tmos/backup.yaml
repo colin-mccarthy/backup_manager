@@ -1,0 +1,13 @@
+---
+- name: "tmos.backup: fetch network configuration"
+  bigip_command:
+    server: "{{ ansible_host | default(inventory_hostname )}}"
+    commands: "show running-config"
+  register: r_bigip_command
+
+- name: "tmos.backup: copy configuration to repo folder"
+  copy:
+    content: "{{ r_bigip_command.stdout[0] }}"
+    dest: "{{ _backup_manager_git_store_path }}/running.cfg"
+    force: "yes"
+  notify: git_sync
