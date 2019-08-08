@@ -57,11 +57,12 @@ def main():
 
     if result.get('files'):
         if not module.check_mode:
-            module.run_command('git add %s' % module.params['pathspec'])
+            for git_add in result.get('files'):
+                module.run_command('git add %s' % git_add)
 
             message = module.params['message'] or generate_message(files)
 
-            cmd = 'git commit -m"%s"' % message
+            cmd = 'git commit -am "%s"' % message
             if module.params['force'] is True:
                 cmd += ' --force'
             rc, out, err = module.run_command(cmd)

@@ -7,7 +7,7 @@
 import os
 
 from ansible.module_utils.basic import AnsibleModule
-
+from ansible.module_utils._text import to_text
 
 def main():
     """ main entry point for module execution
@@ -30,11 +30,13 @@ def main():
         module.fail_json(msg='repo %s does not exist' % repo)
     os.chdir(repo)
 
-    rc, out, err = module.run_command('git push %s %s --dryrun' % (remote, branch))
+    _rc, _out, _err = module.run_command('git push %s %s --dryrun' % (remote, branch))
 
-    if 'Everything up-to-date' not in out:
+    if 'Everything up-to-date' not in _out:
         if not module.check_mode:
-            module.run_command('git push %s %s' % (remote, branch))
+            _rc, _out, _err = module.run_command('git push %s %s' % (remote, branch))
+            if _rc > 0:
+                module.fail_json(msg=to_text(_err.strip()))
         result['changed'] = True
 
     module.exit_json(**result)

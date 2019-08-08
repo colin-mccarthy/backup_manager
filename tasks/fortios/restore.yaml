@@ -1,5 +1,5 @@
 ---
 - name: "fortios.restore: load configuration"
   fortios_config:
-    host: "{{ ansible_host | default(inventory_hostname) }}"
-    src: "{{ __backup_manager_git_store_path }}/running.cfg"
+    host: "{{ ansible_host }}"
+    src: "{{ git_store }}/{{ backup_manager_backup_path }}/running.cfg"
