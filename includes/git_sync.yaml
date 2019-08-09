@@ -10,4 +10,4 @@
   git_push:
     repo: "{{ git_store }}"
     branch: "{{ backup_manager_git_branch }}"
-  executable: "/usr/local/bin/git"
+    executable: "/usr/local/bin/git"
