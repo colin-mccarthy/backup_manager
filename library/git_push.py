@@ -30,11 +30,11 @@ def main():
         module.fail_json(msg='repo %s does not exist' % repo)
     os.chdir(repo)
 
-    _rc, _out, _err = module.run_command('/usr/local/bin/git push %s %s --dryrun' % (remote, branch))
+    _rc, _out, _err = module.run_command('git push %s %s --dryrun' % (remote, branch))
 
     if 'Everything up-to-date' not in _out:
         if not module.check_mode:
-            _rc, _out, _err = module.run_command('/usr/local/bin/git push %s %s' % (remote, branch))
+            _rc, _out, _err = module.run_command('git push %s %s' % (remote, branch))
             if _rc > 0:
                 module.fail_json(msg=to_text(_err.strip()))
         result['changed'] = True
