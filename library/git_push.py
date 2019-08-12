@@ -152,8 +152,9 @@ def git_push(module):
             _rc, _out, _err = module.run_command(_git_push)
             if _rc != 0:
                 module.fail_json(msg=to_text(_err.strip()))
+        return True
     
-    return True
+    return False
 
 def chdir_repo(module):
     repo = module.params.get('repo')
