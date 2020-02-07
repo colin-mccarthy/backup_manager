@@ -9,7 +9,7 @@ backup_manager_backup_path: "{{ inventory_hostname }}/config"
 # yamllint disable-line rule:line-length
 backup_manager_git_url: "git@{{ backup_manager_git_server }}:{{ backup_manager_git_username }}/{{ backup_manager_git_repo }}"
 backup_manager_git_server: "github.com"
-backup_manager_git_repo: "backups"
+backup_manager_git_repo: "ansible_network_backups"
 backup_manager_git_branch: "master"
 backup_manager_git_username: "colin-mccarthy"
 backup_manager_git_deploy_key: ""
